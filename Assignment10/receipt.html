@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receipt</title>
+    <style>
+        body{
+            background-color: rgb(158, 172, 144);
+        }
+        html{
+            font-family:'Courier New', Courier, monospace;
+        }
+        header{
+            text-align: center;
+            background-image: linear-gradient(to right, yellow, red);
+            top:0;
+            left:0;
+            position: absolute;
+            width: 100%;
+            height: 50px;
+            font-size: 2em;
+            font-weight: 600;
+        }
+        .receipt{
+            margin-top: 70px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        fieldset{
+            background-color: rgb(255,255,200);
+            width: 500px;
+            height: 300px;  
+            border: 2px solid black;
+            text-align: center;
+            padding: 20px;
+        }
+        td, th{
+            width: 150px;
+            text-align: center;
+        }
+        #thankYou{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+        .DogGiffy{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .userInfo{
+            display: flex;
+            flex-direction: column;
+            justify-content: left;
+        }
+        tr{
+            text-align: left;
+        }
+        th, td{
+            width: 50px;
+        }
+        #itemsBought{
+            text-align: left;
+        }
+        img{
+            width: 300px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <header>Receipt</header>
+    <div class = "receipt">
+        <fieldset>
+            <legend>Receipt</legend>
+            <div class = 'userInfo'>
+                <span name = 'heading'><b>User Details</b></span>
+                <table cellspacing = '0'>
+                    <tr>
+                        <th>Name: </th>
+                        <td><span id = username></span></td>
+                    </tr>
+                    <tr>
+                        <th>Email: </th>
+                        <td><span id = 'email'></span></td>
+                    </tr>
+                    <tr>
+                        <th>Phone: </th>
+                        <td><span id = 'phoneno'></span></td>
+                    </tr>
+                </table>
+            </div>
+            <div id = 'itemsBought'>
+                <h3><b>Items Purchased</b></h3>
+            </div>
+            <div class = 'total'>
+                <h3>Total Price</h3>
+                <h3 id = 'total'></h3>
+            </div>
+        </fieldset>
+    </div>
+    <span id = 'thankYou'><h1><b><i>Thank you for your Purchase!</i></b></h1></span>
+    <div class = 'DogGiffy'>
+        <img src="Images/dogGif.gif" alt="">
+    </div>
+</body>
+<script>
+    let formData = JSON.parse(localStorage.getItem("groceryData"));
+    
+    if (!formData || !Array.isArray(formData.items) || formData.items.length === 0) {
+      document.body.innerHTML = "<h1>No Data Available</h1>";
+    } 
+    else {
+      
+        let prices = { 'apple': 10, 'banana': 5, 'avacado': 7 };
+        
+        document.getElementById('username').innerHTML += `${formData.firstname} ${formData.lastname}`;
+        document.getElementById('email').innerHTML += formData.email;
+        document.getElementById('phoneno').innerHTML += formData.phone  ;
+
+        let itemsBought = document.getElementById('itemsBought');
+        itemsBought.innerHTML += '<ul>';
+        let totalPrice = 0;
+        for (let item of formData.items) {
+        let subtotal = item.weight * prices[item.name];
+        itemsBought.innerHTML += `<li>${item.name.charAt(0).toUpperCase() + item.name.slice(1)}: ${item.weight} KG, Subtotal = $${subtotal}</li>`;
+        totalPrice += subtotal;
+        }
+        itemsBought.innerHTML += '</ul>';
+        
+        document.getElementById('total').innerHTML = `<strong>$${totalPrice}</strong>`;
+    }
+</script>
+</html>

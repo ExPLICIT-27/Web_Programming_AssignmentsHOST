@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <form style = 'width:500px;'>
+        <fieldset>
+            <table>
+                <legend align = "top" style="color:red">Personal Details</legend>
+                <tr>
+                    <td><label for="name">Name:</label></td>
+                    <td><input type="text" id = "name" name = "name"></td>
+                </tr>
+                <tr></tr>
+                <tr>
+                    <td><label for="pass">Password : </label></td>
+                    <td><input type="email" id = 'pass' name = 'pass'></td>
+                </tr>
+                <tr></tr>
+                <tr>
+                    <td><label>E-Mail ID: </label></td>
+                    <td><input type="email" id = 'mail' name = 'mail'></td>
+                </tr>
+                <tr></tr>
+                <tr>
+                    <td>Gender: </td>
+                    <td>
+                        <label for="male">Male</label>
+                        <input type="radio" id = 'male' name = 'male'>
+                        <label for="female">Female</label>
+                        <input type="radio" id = 'female' name = 'male' checked="true">
+                    </td>
+                </tr>
+                <tr></tr>
+                <tr>
+                    <td><label for="dob">DOB: </label></td>
+                    <td><input type="date" id="dob" name = 'dob'></td>
+                </tr>
+                <tr></tr>
+                <tr>
+                    <td><label for="num">Mobile: </label></td>
+                    <td><input type="tel" pattern="[0-9]{10}" id = 'num' name = 'num'></td>
+                </tr>
+            </table>
+        </fieldset>
+        <fieldset>
+            <legend align = 'top' style="color:red">Educational Qualification</legend>
+            <label for="degree">Degree: </label>
+            <select name="degree" id="degree">
+                <option>--Select Group--</option>
+                <optgroup label="UG">
+                    <option value="">BE</option>
+                    <option value="">BTECH</option>
+                    <option value="">BA</option>
+                    <option value="">BCA</option>
+                    <option value="">BBA</option>
+                    <option value="">Bsc</option>
+                    <option value="">Others</option>
+                </optgroup>
+                <optgroup label="PG">
+                    <option value="">ME</option>
+                    <option value="">MTECH</option>
+                    <option value="">Msc</option>
+                    <option value="">MCA</option>
+                    <option value="">MBA</option>
+                    <option value="">MA</option>
+                    <option value="">Others</option>
+                </optgroup>
+                <optgroup></optgroup>
+            </select>
+            <label for="engineering">Engineering</label>
+            <select name="engineering" id="engineering">
+                <option>--Select Course--</option>
+                <option>CSE</option>
+                <option>ECE</option>
+                <option value="">EEE</option>
+                <option value="">CIVIL</option>
+                <option value="">MECH</option>
+            </select>
+        </fieldset>
+        <table>
+            <tr>
+                <td>Hobbies: </td>
+                <td>
+                    <label for="chess">Playing Chess</label>
+                    <input type="checkbox" id ='chess' name = 'chess'>
+                    <label for="books">Reading Books</label>
+                    <input type="checkbox" id = 'books' name ='books'>
+                </td>
+            </tr>
+            <tr>
+                <label for="favcol">Favourite color: </label>
+                <input type="color" id = 'favcol' name = 'favcol'>
+            </tr>
+        </table>
+        <p style="color:red">Address</p>
+        <textarea name="Address" id="Address" rows = '10' cols = '50' placeholder="enter address..."></textarea>
+        <br>
+        <label for="fileup">Attach Resume: </label>
+        <input type="file" name="fileup" id = 'fileup'>
+        <button>SUBMIT</button>
+    </form>
+</body>
+</html>

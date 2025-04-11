@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question 1</title>
+    <style>
+        .tables{
+            margin: 50px;
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+        }
+        table, button{
+            margin: 10px;
+            width:250px;
+        }
+        button{
+            width: 60px;
+            height: 30px;
+        }
+        button{
+            position: relative;
+            align-self: center;
+        }
+        .search button{
+            width: 70px;
+        }
+        fieldset{
+            width: 300px;
+        }
+        .rangeQuery{
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+        }
+        body{
+            display: flex;
+        }
+        .outputTable{
+            margin: 50px;
+            display: flex;
+            flex-direction: column;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class = "tables">
+        <table border = '3' cellspacing = '0' cellpadding = '5' id = 't1'>
+            <thead>
+                <tr>
+                    <th>PID</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>1</th>
+                    <th>Alen</th>
+                    <th>39</th>
+                </tr>
+                <tr>
+                    <th>2</th>
+                    <th>Deena</th>
+                    <th>47</th>
+                </tr>
+                <tr>
+                    <th>3</th>
+                    <th>Diana</th>
+                    <th>21</th>
+                </tr>
+                <tr>
+                    <th>4</th>
+                    <th>Jack</th>
+                    <th>54</th>
+                </tr>
+                <tr>
+                    <th>5</th>
+                    <th>Jain</th>
+                    <th>23</th>
+                </tr>
+                <tr>
+                    <th>6</th>
+                    <th>Kelvin</th>
+                    <th>61</th>
+                </tr>
+                <tr>
+                    <th>7</th>
+                    <th>Louis</th>
+                    <th>69</th>
+                </tr>
+                <tr>
+                    <th>8</th>
+                    <th>Rex</th>
+                    <th>49</th>
+                </tr>
+            </tbody>
+        </table>
+        <button type = 'button' onclick = 'sortByAge()'>SORT</button>
+        <br>
+        <div class = 'search'>
+            <label for="PIDsearch">Enter PID to Search: </label>
+            <input type="text" id = 'PIDsearch' placeholder="Enter PID to be searched">
+            <button type = 'button' onclick = 'searchPID()'>SEARCH</button>
+            <br>
+            <span id = 'output'></span>
+            <br>
+            <fieldset>
+                <legend>Range Query</legend>
+                <div class = 'rangeQuery'>
+                    <table>
+                        <tr>
+                            <td>
+                                <label for="lowerlim">Enter the lower limit: </label>
+                            </td>
+                            <td>
+                                <input type="text" id = 'lowerlim'>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="upperlim">Enter the upper limit: </label>
+                            </td>
+                            <td>
+                                <input type="text" id = 'upperlim'>
+                            </td>
+                        </tr>
+                    </table>
+                    <button type = 'button' onclick = 'RangeQuery()'>SEARCH</button>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+    <div class = 'outputTable'>
+        <span id = 'queryOutput'></span>
+        <table border = '3' cellspacing = '0' id = 'OutputTable'>
+            <thead>
+                <tr>
+                    <th>PID</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+</body>
+<script>
+    function sortByAge(){
+        var table = document.querySelector('#t1');
+        var tbody = table.querySelector('tbody');
+
+        var rows = Array.from(tbody.querySelectorAll('tr'));
+        rows.sort((rowA, rowB ) => {
+            let age1 = parseInt(rowA.children[2].textContent);
+            let age2 = parseInt(rowB.children[2].textContent);
+            return age1 - age2;
+        })
+        rows.forEach(row => {
+            tbody.appendChild(row);
+        })
+    }
+    function searchPID(){
+        var pid = document.getElementById('PIDsearch').value;
+        let table = document.querySelector('#t1');
+        let tbody = table.querySelector('tbody');
+        let rows = Array.from(tbody.querySelectorAll('tr'));
+        var found = false;
+        for(let i = 0; i < rows.length; i++){
+            if(rows[i].children[0].textContent == pid){
+                var text = `PID FOUND!<br>PID : ${pid}, Name : ${rows[i].children[1].textContent}, Age : ${rows[i].children[2].textContent}`;
+                document.getElementById('output').innerHTML = text;
+                found = true;
+                break;
+            }
+        }
+        if(!found){
+            document.getElementById('output').innerHTML = 'PID Not Found!';
+        }
+    }
+    function RangeQuery(){
+        let lowerRange = parseInt(document.getElementById('lowerlim').value);
+        let upperRange = parseInt(document.getElementById('upperlim').value);
+
+        let table2 = document.querySelector('#OutputTable');
+        let tbody2 = table2.querySelector('tbody');
+        tbody2.innerHTML = "";
+
+        let tbody1 = document.querySelector('#t1').querySelector('tbody');
+        let rows = Array.from(tbody1.querySelectorAll('tr'));
+        let modified = false;
+        rows.forEach(row => {
+            if(parseInt(row.children[2].textContent) >= lowerRange && parseInt(row.children[2].textContent) <= upperRange){
+                let copy = row.cloneNode(true);
+                tbody2.appendChild(copy);
+                modified = true;
+            }
+        })
+        if(!modified){
+            document.getElementById('queryOutput').innerHTML = 'Query unsuccessful! Specified ranges do not exist!';
+            document.querySelector('.outputTable').style.display = 'flex';
+            document.getElementById('OutputTable').style.display = 'none';
+        }
+        else{
+            document.getElementById('queryOutput').innerHTML = 'Query Results: ';
+            document.querySelector('.outputTable').style.display = 'flex';
+        }
+    }
+</script>
+</html>

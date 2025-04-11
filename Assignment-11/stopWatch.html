@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stop Watch</title>
+    <style>
+        html{
+            font-family: 'Courier New', Courier, monospace;
+        }
+        body{
+            background-image: url('Images/bg.jpg');
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            text-align: center;
+        }
+        h1{
+            margin-bottom:50px;
+            font-size: 2.5em;
+            font-weight: bold;
+            z-index: 1;
+            text-shadow: 
+            1px 1px 2px rgba(255, 255, 255, 0.2),
+            2px 2px 5px rgba(255, 255, 255, 0.3),
+            3px 3px 10px rgba(255, 255, 255, 0.4),
+            4px 4px 15px rgba(255, 255,255,0.5);
+        }
+        .stopwatch{
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+            height: 300px;
+            background-image: linear-gradient(to right, orange, red);
+            border-radius: 12px;
+            color: black;
+            padding: 10px;
+            border: 4px solid blue;
+        }
+        #display{
+            position: relative;
+            top: 120px;  
+            font-size: 2.8em;
+            font-weight: 600;
+        }
+        button{
+            position: relative;
+            top: 0px;
+            margin: 10px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1em;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <h1>Stop Watch</h1>
+        <div class = 'stopwatch' id = 'stopwatch'>
+            <span id = 'display'>00:00:00</span>
+            <div class="controlbuttons">
+                <button type = 'button' id = 'start'>START</button>
+                <button type = 'button' id = 'stop'>STOP</button>
+                <button type = 'button' id = 'reset'>RESET</button>
+            </div>
+        </div>
+    </section>
+</body>
+<script>
+    let timer;
+    let seconds = 0, minutes = 0, hours = 0;
+    let isRunning = false;
+    let centisecs = 0;
+    function update(){
+        let formattedTime = ((hours < 10)? '0' + hours : hours) + ':' + ((minutes < 10)? '0' + minutes : minutes) + ':' + ((seconds < 10)? '0' + seconds : seconds);
+        document.getElementById('display').innerHTML = formattedTime + `<sup id = "centisecs">${centisecs < 10? '0' + centisecs : centisecs}</sup>`;
+    }
+
+    function startTimer(){
+        if(!isRunning){
+            isRunning = true;
+            timer = setInterval(() => {
+                centisecs++;
+                if(centisecs === 100){
+                    centisecs = 0;
+                    seconds++;
+                }
+                if(seconds === 60){
+                    seconds = 0;
+                    minutes++;
+                }
+                if(minutes === 60){
+                    minutes = 0;
+                    hours++;
+                }
+                update();
+            }, 10);
+        }
+    } 
+    function stopTimer(){
+        clearInterval(timer);
+        isRunning = false;
+    }
+    function resetTimer(){
+        stopTimer();
+        seconds = 0;
+        minutes = 0;
+        hours = 0;
+        centisecs = 0;
+        update();
+    }
+    let startbtn = document.getElementById('start');
+    let stopbtn = document.getElementById('stop');
+    let resetbtn = document.getElementById('reset');
+    startbtn.addEventListener('click', startTimer);
+    stopbtn.addEventListener('click', stopTimer);
+    resetbtn.addEventListener('click', resetTimer);
+
+   let btns = document.querySelectorAll('button');
+   btns.forEach(button => {
+        button.addEventListener('mouseover', () => {
+            button.style.backgroundColor = 'grey';
+        })
+        button.addEventListener('mouseout', () => {
+            button.style.backgroundColor = 'white';
+        })
+   })
+   update();
+</script>
+</html>

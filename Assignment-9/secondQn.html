@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight System</title>
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+        }
+        .plane-layout{
+            width: 400px;
+            height: 600px;
+            position: absolute;
+            border: 2px solid black;
+            border-radius: 8px;
+            right: 100px;
+            top: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            margin: 10px;
+        }
+        .first-class, .second-class{
+            width: 300px;
+            height: 250px;
+            border: 2px solid black;
+            border-radius: 8px;
+            margin: 10px;
+            padding: 10px;
+            text-align: center;
+        }
+        header{
+            position: absolute;
+            right: 250px;
+            margin: 20px;
+        }
+        .fseat{
+            height: 40px;
+            width: 40px;
+            background-color: green;
+            margin: 10px;
+            border: 2px solid black;
+            border-radius: 4px;
+        }
+        .first-row, .second-row{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px;
+        }
+        .seatSelector{
+            border: 2px solid black;
+            width: 300px;
+            height: 150px;
+            padding: 10px;
+            top: 50px;
+            position: absolute;
+            text-align: center;
+        }
+        .ticket{
+            position: absolute;
+            top: 300px;
+            width: 600px;
+            height: 150px;
+            border: 3px dashed black;
+            display: none;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding: 10px;
+            background-image: linear-gradient(to right, blue, lightblue);
+        }
+        li{
+            margin: 10px;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <header>Plane Layout</header>
+    <div class = "plane-layout">
+        <div class = "first-class">
+            <span>First Class</span>
+            <div class = "first-row">
+                <div class = "fseat" id = "seat0"></div>
+                <div class = "fseat" id = "seat1"></div>
+            </div>
+            <div class = "second-row">
+                <div class = "fseat" id = "seat2"></div>
+                <div class = "fseat" id = "seat3"></div>
+                <div class = "fseat" id = "seat4"></div>
+            </div>
+        </div>
+        <div class = "second-class">
+            <span>Economy Class</span>
+            <div class = "first-row">
+                <div class = "fseat" id = "seat5"></div>
+                <div class = "fseat" id = "seat6"></div>
+            </div>
+            <div class = "second-row">
+                <div class = "fseat" id = "seat7"></div>
+                <div class = "fseat" id = "seat8"></div>
+                <div class = "fseat" id = "seat9"></div>
+            </div>
+        </div>
+    </div>
+    <div class = "seatSelector">
+        <label for="user">Name: </label>
+        <input type="text" id = 'user' name = 'user' placeholder = 'Enter name'>
+        <br>
+        <br>
+        <span><b>Select Class</b></span>
+        <br>
+        <br>
+        <label for="FirstClass">First Class(1)</label>
+        <input type="radio" name = "classSelect" id = "FirstClass">
+        <label for="SecondClass">Economy(2)</label>
+        <input type="radio" name = "classSelect" id = "SecondClass">
+        <br>
+        <br>
+        <button type = "button" onclick = "generateTicket()">GET TICKET</button>
+    </div>
+    <div class = "ticket" id = "ticket">
+        <center><b>TICKET</b></center>
+        <ul type = "none">
+            <li id = "ticketName">Name : </li>
+            <li id = "ticketClass">Class : </li>
+            <li id = "ticketSeat">Seat Number : </li>
+        </ul>
+    </div>
+</body>
+<script>
+    let seats = new Array(10).fill(0);
+
+    function generateTicket(){
+        let name = document.getElementById("user").value.trim();
+        let firstclass = document.getElementById("FirstClass").checked;
+        let secondclass = document.getElementById("SecondClass").checked;
+        if(name === ""){
+            alert("Please enter a name!");
+            return;
+        }
+        if(!firstclass && !secondclass){
+            alert("Please select a seat class!");
+            return;
+        }
+        let seatidx = -1;
+        let selectedClass = "";
+        if(firstclass){
+            selectedClass = "First Class"
+            for(let i = 0; i < 5; i++){
+                if(!seats[i]){
+                    seatidx = i;
+                    seats[i] = 1;
+                    break;
+                }
+            }
+        }
+        else{
+            selectedClass = "Economy"
+            for(let i = 5; i < 10; i++){
+                if(!seats[i]){
+                    seatidx = i;
+                    seats[i] = 1;
+                    break;
+                }
+            }
+        }
+        let otherclass = (selectedClass === "First Class")? "Economy" : "First Class";
+        if(seatidx === -1){
+            if(confirm(`No Seats Available in ${selectedClass}, can we place you in ${otherclass}`)){
+                var start, end;
+                if(otherclass == "First Class"){
+                    start = 0, end = 5;
+                }
+                else{
+                    start = 5, end = 10;
+                }
+                for(let i = start; i < end; i++){
+                    if(!seats[i]){
+                        seats[i] = 1;
+                        seatidx = i;
+                        break;
+                    }
+                }
+            }
+            if(seatidx == -1){
+                alert("Sorry the entire plane is Full!");
+                return;
+            }
+        }
+
+        document.getElementById(`seat${seatidx}`).style.backgroundColor = "red";
+
+        document.getElementById("ticketName").textContent = "Name : " + name;
+        document.getElementById("ticketClass").textContent = "Class : " + selectedClass;
+        document.getElementById("ticketSeat").textContent = "Seat : " + (seatidx + 1);
+        document.getElementById("ticket").style.display = "block";
+
+    }
+</script>
+</html>

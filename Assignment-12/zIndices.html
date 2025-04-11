@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Z-Index Usage</title>
+    <style>
+        body{
+            display:flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .orangeBox{
+            width : 700px;
+            height : 700px;
+            background-color: orange;
+            border : 2px solid black;
+            margin-right: 20px;
+            position: relative;
+        }
+        .redBox{
+            width : 600px;
+            height : 600px;
+            background-color: red;
+            border : 2px solid black;
+            position : absolute;
+            top: 50px;
+            left : 200px;
+        }
+        .blueBox{
+            width : 500px;
+            height : 500px;
+            background-color: lightblue;
+            border : 2px solid black;
+            position : absolute;
+            top : 90px;
+            left : 250px;
+        }
+        .buttons{
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+        .singleButton{
+            display : flex;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+        label{
+            font-size: 1.4em;
+            font-weight : 600;
+            margin: 10px;
+        }
+        span{
+            font-size: 1.4em;
+            font-weight: 600;
+        }
+        input{
+            margin : 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="boxes">
+        <div class="orangeBox" id="orangeBox"></div>
+        <div class="redBox" id = "redBox"></div>
+        <div class="blueBox" id = "blueBox"></div>
+    </div>
+    <div class="buttons">
+        <h2>Modify Z indices! (-5 to 5)</h2>
+        <div class="singleButton">
+            <label for="redRange" style = "color:red;">Z-INDEX</label>
+            <input type="range" min = "-5" max = "5" value = "0" id = "redRange">
+            <span id = "redVal">0</span>
+        </div>
+        <div class="singleButton">
+            <label for="orangeRange" style = "color: orange;">Z-INDEX</label>
+            <input type="range" min = "-5" max = "5" value = "0" id = "orangeRange">
+            <span id = "orangeVal">0</span>
+        </div>
+        <div class="singleButton">
+            <label for="redRange" style = "color: lightblue;">Z-INDEX</label>
+            <input type="range" min = "-5" max = "5" value = "0" id = "blueRange">
+            <span id = "blueVal">0</span>
+        </div>
+    </div>
+</body>
+<script>
+    let rangeInputs = Array.from(document.querySelectorAll('input[type = "range"]'));
+    rangeInputs.forEach(inp => {
+        inp.addEventListener("input", function(){
+            let currval = parseInt(inp.value);
+            let spanId = inp.id.replace("Range", "Val");
+            document.getElementById(spanId).innerHTML = currval;
+            let boxid = inp.id.replace("Range", "Box")
+            document.getElementById(boxid).style.zIndex = currval;
+        })
+    })
+</script>
+</html>

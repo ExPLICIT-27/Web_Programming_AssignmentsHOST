@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type = 'text/javascript'>
+        function total(){
+            childfee = parseInt(document.getElementById('child').value)*5;
+            adultfee = parseInt(document.getElementById('adults').value)*10;
+            document.getElementById('output').value = childfee+adultfee;
+        }
+    </script>
+</head>
+<body>
+    <form name = "F1">
+        <h1>TICKET BOOTH</h1>
+        <label for="adults">Adults (&#8377;10 each)</label>
+        <br>
+        <input type="text" name = 'adults' id = 'adults' style = 'width: 50px; height: 20px;'>
+        <br>
+        <label for="child">Children (&#8377;5 each)</label>
+        <br>
+        <input type="text" name = 'child' id = 'child' style = 'width:50px;height:20px'>
+        <br>
+        <br>
+        <button type = "button" onclick = 'total()'>Total</button>
+        <input type="text" style = 'width:50px;height:20px' id = 'output'>
+    </form>
+</body>
+</html>

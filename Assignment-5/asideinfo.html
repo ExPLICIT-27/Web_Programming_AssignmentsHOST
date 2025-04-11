@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .skills{
+            align-items: left;
+            font-size: 20px;
+        }
+        progress {
+            background-color: #f3f3f3;
+            border-radius: 10px;
+        }
+        tr{
+            text-align: left;
+            align-items: left;
+        }
+        body{
+            background-image: linear-gradient(to right, white, grey);
+        }
+        h2{
+            text-align: center;
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+    <aside>
+        <div class = "skills">
+            <h2>⭐ <i><u>Skills</u></i></h2>
+            <br>
+            <table cellspacing = '25'>
+                <tr>
+                    <th><label for="python">Python (75%): </label></th>
+                    <td><progress value = '75' max = '100' name = 'python'></progress></td>
+                </tr>
+                <tr>
+                    <th><label for="c++">C++ (75%): </label></th>
+                    <td><progress value = '75' max = '100' name = 'c++'></progress></td>
+                </tr>
+                <tr>
+                    <th><label for="java">Java (65%): </label></th>
+                    <td><progress value = '65' max = '100' name = 'java'></progress></td>
+                </tr>
+                <tr>
+                    <th><label for="web-dev">Web (25%): </label></th>
+                    <td><progress value = '25' max = '100' name = 'web-dev'></progress></td>
+                </tr>
+            </table>
+        </div>
+    </aside>
+</body>
+</html>

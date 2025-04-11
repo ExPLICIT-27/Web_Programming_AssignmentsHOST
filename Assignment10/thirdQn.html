@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Third Question</title>
+    <style>
+        html{
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        body{
+            background-color: rgb(158, 172, 144);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .groceryBox{
+            width: 350px;
+            height: 600px;
+            background-color: rgb(158, 172, 144);
+            display: flex;
+            flex-direction: column;
+            margin: 20px;
+            padding: 5px;
+            text-align: center;
+            border: 2px solid black;
+        }
+        .userDetails{
+            display: block;
+            text-align: left;
+            padding: 5px;
+            margin: 5px;
+            border-bottom: 2px solid black;
+        }
+        .boxes{
+            display: flex;
+            justify-content: space-between;
+            margin-left: 10 px;
+        }
+        .userDetails input{
+            height: 15px;
+            width: 135px;
+            border-radius: 8px;
+        }
+        .products{
+            text-align: left;
+        }
+        .grocItem{
+            display: flex;
+            justify-content: space-between;
+            margin: 10px;
+            align-items: center;
+        }
+        img{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+        .grocItem input{
+            width: 50px;
+            border-radius: 12px;
+        }
+        .grocItem{
+            font-weight: bold;
+        }
+        [name='fruit']{
+            width: 25px;
+            height: 25px;
+        }
+        button{
+            display: flex;
+            align-self: center;
+            justify-content: center;
+            background-color: rgb(170, 137, 85);
+            color: white;
+            width: 150px; 
+            text-align: center;
+            font-weight: 600;
+            border-radius: 12px;
+        }
+        input{
+            padding: 5px;
+        }
+        a{
+            text-decoration: none;
+        }
+        span{
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <form id = 'groceryForm'>
+        <div class = 'groceryBox'>
+            <h2><b>Grocery Order Form</b></h2>
+            <div class="userDetails">
+                <span>Customer Name</span>
+                <br>
+                <br>
+                <div class = 'boxes'>
+                    <input type="text" id = firstname name = 'firstname' placeholder="john">
+                    <input type="text" id = lastname name = 'lastname' placeholder="doe">
+                </div>
+                <br>
+                <span>Phone Number</span>
+                <br>
+                <br>
+                <div class = 'boxes'>
+                    <input type="tel" id = firstno name = 'firstno' placeholder="XXX-XXX-XXX">
+                    <input type="tel" id = lastno name = 'lastno' placeholder="XXX-XXX-XXX">
+                </div>
+                <br>
+                <span>Email</span>
+                <br>
+                <br>
+                <div class = 'boxes'>
+                    <input type="email" id = mailid name = 'mailid' placeholder="mail@gmail.com">
+                </div>
+                <br>
+            </div>
+            <div class = 'products'>
+                <h3><b>Products</b></h3>
+                <div class="grocItem">
+                    <img src="Images/appleimg.jpg" alt="">
+                    <input type="checkbox" id = 'apple' name = 'fruit'>
+                    <label for="apple">Apple</label>
+                    <span>&dollar; 10</span>
+                    <input type="text" id = 'appleweight' name = 'weight'>
+                    <label for="appleweight">kg</label>
+                </div>
+                <div class="grocItem">
+                    <img src="Images/bananaimg.jpg" alt="">
+                    <input type="checkbox" id = 'banana' name = 'fruit'>
+                    <label for="banana">Banana</label>
+                    <span>&dollar; 5</span>
+                    <input type="text" id = 'bananaweight' name = 'weight'>
+                    <label for="bananaweight">kg</label>
+                </div>
+                <div class="grocItem">
+                    <img src="Images/avacadoimg.jpg" alt="">
+                    <input type="checkbox" id = 'avacado' name = 'fruit'>
+                    <label for="avacado">Avacado</label>
+                    <span>&dollar; 7</span>
+                    <input type="text" id = 'avacadoweight' name = 'weight'>
+                    <label for="avacadoweight">kg</label>
+                </div>
+            </div>
+            <button type = 'button' onclick="storeLocal()">SUBMIT</button>
+        </div>
+    </form>
+</body>
+<script>
+    function storeLocal() {
+        let form = document.getElementById('groceryForm');
+        let formData = new FormData(form);
+    
+        let groceryData = {
+            firstname: formData.get('firstname'),
+            lastname: formData.get('lastname'),
+            phone: `${formData.get("firstno")}, ${formData.get("lastno")}`, 
+            email: formData.get('mailid'),
+            items: []
+        };
+    
+        let fruits = ["apple", "banana", "avacado"];
+        for (let fruit of fruits) {
+            let isChecked = document.getElementById(fruit).checked;
+            let weight = parseFloat(document.getElementById(fruit + 'weight').value) || 0;
+            console.log(weight);
+            if (isChecked && weight > 0) {
+                groceryData.items.push({
+                    name: fruit,
+                    checked: isChecked,
+                    weight: weight
+                });
+            }
+        }
+    
+    
+        localStorage.setItem("groceryData", JSON.stringify(groceryData));
+        window.location.href = "receipt.html"; 
+    }
+    
+</script>
+</html>

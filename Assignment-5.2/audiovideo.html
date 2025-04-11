@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .mediaElements{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="mediaElements">
+        <div class = "audio">
+            <h1>Audio</h1>
+            <audio controls="controls">
+                <source src = "andrewLaugh.mp3" type = "audio/mpeg"/>
+            </audio>
+        </div>
+        <div class = "video">
+            <h1>Video</h1>
+            <video width = '320' hieght = '240' controls loop autoplay muted poster = "E:\WebProgramming\Assignment-1\Images\cat.jpeg">
+                <source src = "kusten_shrunk.mp4" type = "video/mp4">
+            </video>
+        </div>
+        <div class = "canvas">
+            <h1>Canvas</h1>
+            <canvas id = "mycanvas" width = '320' height = '240'></canvas>
+        </div>
+    </div>
+</body>
+<script>
+    var c = document.getElementById("mycanvas");
+    var ctx = c.getContext('2d');
+    ctx.fillStyle = 'red';
+
+    ctx.beginPath();
+    ctx.moveTo(30, 30);
+    ctx.lineTo(290, 30);
+    ctx.lineTo(290, 210);
+    ctx.lineTo(30, 210);
+    ctx.lineTo(30,30);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.fillStyle = 'black';
+    ctx.beginPath();
+    ctx.moveTo(90, 90);
+    ctx.lineTo(230, 90);
+    ctx.lineTo(230, 150);
+    ctx.lineTo(90, 150);
+    ctx.lineTo(90,90);
+    ctx.fill();
+    ctx.stroke(); 
+
+    ctx.fillStyle = 'grey'
+
+    ctx.beginPath();
+    ctx.moveTo(70, 150);
+    ctx.lineTo(250, 150);
+    ctx.lineTo(250, 170);
+    ctx.lineTo(70, 170);
+    ctx.lineTo(70, 150);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.fillStyle = 'yellow';
+    var x = (90 + 230)/2;
+    var y = (90 + 150)/2;
+    var radius = 20;
+    ctx.beginPath();
+    ctx.arc(x, y, radius, 0, 2*Math.PI);
+    ctx.fill();
+    ctx.stroke();
+</script>
+</html>

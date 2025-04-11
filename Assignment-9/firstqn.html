@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Recordings</title>
+    <style>
+        h1{
+            color: red;
+            font-weight: 600;
+        }
+        li{
+            font-size: 1.2em;
+            margin: 10px;
+        }
+        body{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 500px;
+        }      
+    </style>
+</head>
+<body>
+    <h1>Temperature readings</h1>
+    <ul>
+        <li id = "hot"></li>
+        <li id = "pleasant"></li>
+        <li id = "cold"></li>
+    </ul>
+    <table id = "tempTable" border = 3 bgcolor = 'grey' cellspacing = '0'>
+        <caption>Temperature Classification</caption>
+        <tr>
+            <th>Temperature</th>
+            <th>Category</th>
+        </tr>
+    </table>
+</body>
+<script>
+    function DetermineType(num){
+        if(num > 85){
+            return "HOT DAY";
+        }
+        else if(num < 60){
+            return "COLD DAY";
+        }
+        return "PLEASANT DAY";
+    }
+    let temperatures = [55, 62, 68, 74, 59, 45, 41, 58, 60, 67, 65, 78, 82, 88, 91, 92, 90, 93, 87, 80, 78, 79, 72, 68, 61, 59, 55, 65];
+    let hotdays = 0, colddays = 0, pleasantdays = 0;
+
+    let table = document.getElementById("tempTable");
+    for(let i = 0; i < temperatures.length; i++){
+        if(temperatures[i] >= 85){
+            hotdays++;
+        }
+        if(temperatures[i] >= 60 && temperatures[i] <= 84){
+            pleasantdays++;
+        }
+        if(temperatures[i] < 60){
+            colddays++;
+        }
+        
+        let category = DetermineType(temperatures[i]);
+        let row = table.insertRow();
+        let cell1 = row.insertCell(0);
+        let cell2 = row.insertCell(1);
+
+        cell1.textContent = temperatures[i];
+        cell2.textContent = category;
+
+    }
+    document.getElementById("hot").textContent = "Number of Hot Days: " + hotdays;
+    document.getElementById("pleasant").textContent = "Number of Pleasant Days: " + pleasantdays;
+    document.getElementById("cold").textContent = "Number of cold days: " + colddays;
+    
+</script>
+</html>

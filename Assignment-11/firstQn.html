@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Question 1</title>
+    <style>
+      body {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body></body>
+  <script>
+    let header = document.createElement("h2");
+    header.innerHTML = "Dynamic Table";
+    document.body.appendChild(header);
+    let table = document.createElement("table");
+    table.setAttribute("border", "3");
+    table.setAttribute("cellspacing", "0");
+    table.setAttribute("cellpadding", "3");
+    document.body.appendChild(table);
+    for (let i = 0; i < 3; i++) {
+      let row = table.insertRow(i);
+      for (let j = 0; j < 3; j++) {
+        let cell = row.insertCell(j);
+        cell.innerHTML = `Row ${i + 1} <br> Col ${j + 1}`;
+        cell.setAttribute("text-align", "center");
+      }
+    }
+    table.style.marginBottom = "30px";
+    let button = document.createElement("button");
+    button.innerHTML = "Hover over me";
+    document.body.appendChild(button);
+    button.style.backgroundColor = "red";
+    button.addEventListener("mouseover", (ev) => {
+      button.style.backgroundColor = "green";
+    });
+    button.style.margin = "20px";
+    let textbox = document.createElement("textarea");
+    document.body.appendChild(textbox);
+    textbox.setAttribute("rows", "10");
+    textbox.setAttribute("cols", "10");
+    textbox.style.backgroundColor = "green";
+    textbox.addEventListener("focus", (ev) => {
+      textbox.style.backgroundColor = "yellow";
+      textbox.innerHTML = "Hello There";
+    });
+    textbox.style.marginBottom = "20px";
+    let inp = document.createElement("input");
+    inp.setAttribute("placeholder", "Input-field");
+    document.body.appendChild(inp);
+    inp.style.marginBottom = "20px";
+    let btn2 = document.createElement("button");
+    btn2.innerHTML = "Double click Me!";                   
+    document.body.appendChild(btn2);
+    let ulist = document.createElement('ul');
+    document.body.appendChild(ulist);
+    btn2.addEventListener('dblclick', function(){
+        let li = document.createElement('li');
+        ulist.appendChild(li);
+        li.textContent = inp.value;
+    })
+    let inp2 = document.createElement('input');
+    inp2.setAttribute('placeholder', 'Key-Counter');
+    document.body.appendChild(inp2);
+    inp2.style.marginBottom = '20px';
+    let out = document.createElement('input');
+    out.value = 0;
+    document.body.appendChild(out);
+    inp2.addEventListener('keydown', function(){
+        out.value = parseInt(out.value) + 1;
+    })
+  </script>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type = 'text/javascript'>
+
+        function applystyles(){
+
+            var n = document.getElementById("name").value;
+            var r = document.getElementById("regno").value;
+            
+            
+            document.write("<h1 style = 'color:black;border:5px solid red;width:100px;height:50px;font-size: 1em;text-align: center;padding:5px;' id = 'head'>" + r + "</h1>");
+            document.write("<h1 style = 'color:red;border:2px solid black;width:100px;height:50px;font-size:1em;text-align:center;padding:5px;' id = 'head2'></h1>");
+            document.getElementById("head2").innerHTML = n;
+        }
+    </script>
+</head>
+<body>
+    <form name = "F1">
+        <input type="text" placeholder="Enter registration number: " name="regno" id = regno>
+        <br>
+        <input type="text" placeholder="Enter name: " name = 'name' id = "name">
+        <br>
+        <button name = "btn" onclick="applystyles()">Submit</button>
+    </form>
+</body>
+</html>

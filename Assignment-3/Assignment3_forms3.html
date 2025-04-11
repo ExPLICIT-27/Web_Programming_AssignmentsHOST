@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style = "background-image: linear-gradient(to right, white, blue);">
+    <center><img src="macbook.jpg"></center>
+    <h2 style = "text-align: center;">Rate the Product</h2>
+    
+    <center>
+        <label for="Quality">Quality: </label>
+        <span id = 'quality-value'>5</span>
+        <input type="range" min = '0' max = '10' value = '5' id = 'Quality' name = 'Quality' 
+        oninput = "document.getElementById('quality-value').textContent = this.value; 
+        document.getElementById('total-sum').textContent = parseInt(document.getElementById('Quality').value) + parseInt(document.getElementById('Speed').value) + parseInt(document.getElementById('Endurance').value)">
+    </center>
+    <br>
+    <center>
+        <label for="Speed">Speed: </label>
+        <span id = "Speed-value">5</span>
+        <input type="range" min = '0' max = '10' value = '5' id = 'Speed' 
+        oninput = "document.getElementById('Speed-value').textContent = this.value;
+        document.getElementById('total-sum').textContent = parseInt(document.getElementById('Quality').value) + parseInt(document.getElementById('Speed').value) + parseInt(document.getElementById('Endurance').value)">
+    </center>
+    <br>
+    <center>
+        <label for="Endurance">Endurance: </label>
+        <span id = "Endurance-value">5</span>
+        <input type="range" min = '0' max = '10' value = '5'id = 'Endurance' 
+        oninput = "document.getElementById('Endurance-value').textContent = this.value;
+        document.getElementById('total-sum').textContent = parseInt(document.getElementById('Quality').value) + parseInt(document.getElementById('Speed').value) + parseInt(document.getElementById('Endurance').value)">
+    </center>
+    <br>
+    <center>
+        <h2>Total Sum: <span id = "total-sum">15</span></h2>
+    </center>
+</body>
+</html>

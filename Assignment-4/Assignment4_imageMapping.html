@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar System</title>
+    <style>
+        .top-left{
+            position: absolute;
+            top: 8px;
+            left: 12px;
+            color: white;
+            background-image: linear-gradient(to right, blue, green);
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <img src="solar_system.jpg" usemap="#goto">
+    <div class = "top-left"><h1>MY SPACE</h1></div>
+    <map name="goto" >
+        <area shape="poly" coords="7,52,181,307,4,589" href="Sun.html" title="Sun: Ball of Fire" target="_blank">
+        <area shape="circle" coords="241,318,13" title = "Mercury: The Scorched Wanderer">
+        <area shape="circle" coords="319,218,34" title="Venus: Morning Star">
+        <area shape="circle" coords="414,318,35" href = "Earth.html" title = "Earth: Blue Planet" target = "_blank">
+        <area shape="circle" coords="510,318,30" title = "Mars: The Red Warrior">
+        <area shape="circle" coords="670,318,90" title = "Jupiter: Largest Planet">
+        <area shape="circle" coords="871,318,49" title = "Saturn: Ring Planet">
+        <area shape="circle" coords="1049,318,49" title = "Uranus: Ice Giant">
+        <area shape="circle" coords="1176,318,35" title = "Neptune: Blue Giant">
+        <area shape="poly" coords="10,11,158,11,178,79,2,78" href="myspace.html" title = "My details">
+    </map>
+</body>
+</html>

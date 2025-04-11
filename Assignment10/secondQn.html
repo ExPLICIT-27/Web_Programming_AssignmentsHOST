@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question 2</title>
+</head>
+<body>
+    <h1 id = heading></h1>
+    <div class = 'input-field'>
+        <label for="username">Enter username: </label>
+        <input type="text" id = username name = 'username'>
+    </div>
+    <div id = 'info' class ='info'>
+        <p>Paragraph 1</p>
+        <p>Paragraph 2</p>
+        <p>Paragraph 3</p>
+        <p>Paragraph 4</p>
+    </div>
+    <div>
+        <ul>
+            <li>List item 1</li>
+            <li>List item 2</li>
+            <li>List item 3</li>
+            <li>List item 4</li>
+        </ul>
+    </div>
+    <div class="hobby">
+        <label for="Drawing">Drawing</label>
+        <input type="checkbox" id = Drawing name = 'hobbybox' value = 'Drawing'>
+        <label for="Football">Football</label>
+        <input type="checkbox" id = Football name = 'hobbybox' value = 'Football'>
+        <label for="Basketball">Basketball</label>
+        <input type="checkbox" id = Basketball name = 'hobbybox' value = 'Basketball'>
+    </div>
+</body>
+<script>
+    document.getElementById('heading').textContent = "Updated Title";
+    document.getElementsByName("username")[0].value = "John Doe";
+
+    console.log(document.getElementsByTagName('p').length);
+
+    document.getElementsByClassName('input-field')[0].style.backgroundColor = 'lightblue';
+
+    document.querySelector('.info p').innerHTML = "This is the first info paragraph";
+    let infotag = document.querySelector('.info');
+    Array.from(infotag.querySelectorAll('p')).forEach(para => console.log(para.textContent));
+
+    let hobbyboxes = document.querySelector('.hobby').querySelectorAll('input[name = "hobbybox"]');
+    hobbyboxes.forEach(checkbox =>{
+        checkbox.checked = true
+        console.log(checkbox.value);
+    });
+</script>
+</html> 

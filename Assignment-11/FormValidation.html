@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <style>
+        body{
+            display: flex;  
+        }
+        .formValidation{
+            width: 1000px;
+            height: 600px;
+            border: 3px solid black;
+            display: flex;
+            flex-direction: column;
+        }
+        .head{
+            position: relative;
+            margin-top: 0px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .head h1{
+            margin-top: 0px;
+            margin-left: 15px;
+        }
+        sup{
+            color:red;
+        }
+        table{
+            width: 500px;
+            height: 500px;  
+            font-size: 1.2em;
+            margin-left: 15px;
+        }
+        input{
+            width: 100%;
+        }
+        select{
+            width: 70%;
+        }
+        #genderCol input{
+            width: 15px;
+            height: 15px;
+        }
+        #prefCol input{
+            width: 15px;
+            height: 15px;
+        }
+        button{
+            margin-right: 10px;
+            width: 35%;
+        }
+        .time{
+            margin: 10px;
+            width: 200px;
+            height: 25px;
+            border: 2px solid black;
+            font-size: 1.2em;
+            text-align: center;
+        }
+        #currTime{
+            margin-top: 10px;
+        }
+        [value = 'RESET']{
+            width: 35%;
+        }
+        .finalResults{
+            margin-top: 180px;
+            margin-left: 10px;
+            margin-bottom: 50px;
+            width: 400px;
+            height: 200px;
+            background-color: yellow;
+            border: 2px solid black;
+            display: none;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="formValidation">
+        <div class="head">
+            <h1>Test JavaScript Form Validation</h1>
+            <div class="time">
+                <span id = "currTime"></span>
+            </div>
+        </div>
+        <form>
+            <div class="content">
+                <table>
+                    <tr>
+                        <td>Name<sup>*</sup></td>
+                        <td><input type="text" id = 'name' required></td>
+                    </tr>
+                    <tr>
+                        <td>Address</td>
+                        <td><input type="text" id = 'address' required></td>
+                    </tr>
+                    <tr>
+                        <td>Zip Code<sup>*</sup></td>
+                        <td><input type="text" id = 'zipcode' required></td>
+                    </tr>
+                    <tr>
+                        <td>Country<sup>*</sup></td>
+                        <td>
+                            <select name="country" id="country">
+                                <option selected>Please Select...</option>
+                                <option>India</option>
+                                <option>America</option>
+                                <option>Australia</option>
+                                <option>Africa</option>
+                                <option>Malaysia</option>
+                                <option>Colombia</option>
+                                <option>Brazil</option>
+                                <option>China</option>
+                                <option>England</option>
+                                <option>Sri Lanka</option>
+                                <option>Indonesia</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr id = 'genderCol'>
+                        <td>Gender<sup>*</sup></td>
+                        <td>
+                            <input type="radio" name = 'gender' id = 'male' checked value = 'male'>
+                            <label for="male">Male</label>
+                            <input type="radio" name = 'gender' id = 'female' value ='female'>
+                            <label for="female">Female</label>
+                        </td>
+                    </tr>
+                    <tr id = 'prefCol'>
+                        <td>Preferences<sup>*</sup></td>
+                        <td>
+                            <input type="checkbox" name = 'pref' id = 'red' checked>
+                            <label for="red">Red</label>
+                            <input type="checkbox" name = 'pref' id = 'green'>
+                            <label for="green">Green</label>
+                            <input type="checkbox" name = 'pref' id = 'blue'>
+                            <label for="blue">Blue</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Phone<sup>*</sup></td>
+                        <td><input type="text" id = 'phone' required></td>
+                    </tr>
+                    <tr>
+                        <td>Email<sup>*</sup></td>
+                        <td><input type="email" required id = 'email'></td>
+                    </tr>
+                    <tr>
+                        <td>Password (6-8 characters)<sup>*</sup></td>
+                        <td><input type="password" required id = 'password'></td>
+                    </tr>
+                    <tr>
+                        <td>Verify password<sup>*</sup></td>
+                        <td><input type="password" required id = 'passwordver'></td>
+                    </tr>
+                    <tr>
+                        <td>Pan No:</td>
+                        <td><input type="text" id = 'pan'></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <button type = 'button' onclick = 'validate()'>SEND</button>
+                            <input type = 'reset' value = 'RESET'>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </form>
+    </div>
+    <div class="finalResults" id = 'fres'>
+        <span id = 'results'></span>
+    </div>
+</body>
+<script>
+    function updateTime(){
+        let currTime = new Date();
+        let hours = currTime.getHours().toString().padStart(2, '0');
+        let mins = currTime.getMinutes().toString().padStart(2, '0');
+        let secs = currTime.getSeconds().toString().padStart(2, '0');
+
+        document.getElementById("currTime").innerHTML = `Time : ${hours}:${mins}:${secs}`;
+    }
+    setInterval(updateTime, 1000);
+    updateTime();
+    function validate(){
+        let allconds = true;
+        let name = document.getElementById('name').value.toString();
+        if(name.length > 15 || name.length == 0){
+            allconds = false;
+            document.getElementById('name').style.borderColor = 'red'
+            document.getElementById('name').focus();
+            alert("Name must be less than 15 chars and not empty!");
+        }
+        let pattern = /^([0-9]){6}$/
+        let zipCode = document.getElementById("zipcode").value.toString();
+        if(!zipCode.match(pattern)){
+            allconds = false;
+            document.getElementById('zipcode').style.borderColor = 'red'
+            document.getElementById('zipcode').focus();
+            alert("ZipCode must be 6 digit numeric value!");
+        }
+        let phonePattern = /^([0-9]){10}$/
+        let phone = document.getElementById("phone").value.toString();
+
+        if(!phone.match(phonePattern)){
+            allconds = false;
+            document.getElementById('phone').style.borderColor = 'red'
+            document.getElementById('phone').focus();
+            alert("Phone Number must be a 10 digit number!");
+        }
+
+        let password = document.getElementById('password').value.toString();
+        let passPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@.#$!%*?&])[A-Za-z\d@.#$!%*?&]{8,15}$/
+
+        if(!password.match(passPattern)){
+            allconds = false;
+            document.getElementById('password').style.borderColor = 'red'
+            document.getElementById('password').focus();
+            alert("Password does not satisfy requirements.");
+        }
+
+        let vpas = document.getElementById("passwordver").value.toString();
+        if(vpas !== password){
+            allconds = false;
+            document.getElementById('passwordver').style.borderColor = 'red'
+            document.getElementById('passwordver').focus();
+            alert("Verify password must be same as password!");
+        }
+        
+        let pan = document.getElementById("pan").value.toString();
+
+        let panpat = /^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}$/
+
+        if(!pan.match(panpat)){
+            allconds = false;
+            document.getElementById('pan').style.borderColor = 'red'
+            document.getElementById('pan').focus();
+            alert("Pan does not match pattern!")
+        }
+
+        if(allconds){
+            let preferences = "";
+            Array.from(document.querySelectorAll("input[name = 'pref']:checked")).forEach(el => {
+                preferences += el.value + " ";
+            });
+            document.getElementById("results").innerHTML = `
+            Name : ${name} <br>
+            Zip Code : ${zipCode} <br>
+            Gender : ${document.querySelector("input[name = 'gender']:checked").value}<br>
+            Country : ${document.getElementById('country').value} <br>
+            Phone : ${phone} <br>
+            Email : ${document.getElementById('email').value}<br>
+            Pan No : ${pan}
+            `
+            document.getElementById('fres').style.display = 'block';
+        }
+
+    }
+</script>
+</html>

@@ -1,0 +1,119 @@
+body{
+    height: 100vh;
+    background-image: url('Images/park.jpg');
+    background-size: cover;
+    overflow: hidden;
+    display: block;
+}
+header{
+    position: absolute;
+    left: 30%;
+    padding: 15px;
+    font-size: 2.5em;
+    text-align: center;
+    font-weight: 600;
+    width: 600px;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+section{
+    display: block;
+    width: 80%;
+    height: auto;
+    padding: 10px;
+    margin: 10px;
+    column-count: 3; 
+    column-gap: 0px; 
+}
+.Para{
+    position: relative;
+    top: 100px;
+    display: block;
+    text-align: center;
+    justify-content: center;
+    background: transparent;
+    border-radius: 12px;
+    border: 1px solid black;
+    box-shadow: 0 4px 2px rgb(0, 0, 0, 0.4);
+    width: 300px;
+    height: 430px;
+    padding: 10px;
+    line-height: 30pt;
+    backdrop-filter: blur(20px);
+    color: white;
+}
+.Para h2{
+    font-weight: 800;
+    font-size: 1.6em;
+    text-decoration: underline;
+}
+.Para ul{
+    font-size: 1.3em;
+}
+li::marker{
+    color: red;
+}
+.earth{
+    width: 70%;
+    height: 20%;
+    left: -10px;
+    position: relative;
+    top: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 4px rgb(0, 0, 0, 0.4);
+}
+
+.dogPlays img{
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+    width: 300px;
+    height: 300px;
+    padding: 0;
+    margin: 0;
+}
+svg {
+    position: absolute;
+    bottom: 222px;
+    right: 110px;
+    overflow: visible;
+}
+
+circle {
+    animation: moveUpDown 4s linear infinite;
+    transform-origin: center center;
+}
+
+@keyframes moveUpDown {
+    0% {
+        transform: translateY(0)
+        skewX(0deg)
+        scale(1)
+        rotate(0deg);
+    }
+    50% {
+        transform: translateY(-400px)
+        skewX(20deg)
+        scale(2)
+        rotate(180deg);
+    }
+    100% {
+        transform: translateY(0)
+        skewX(0deg)
+        scale(1)
+        rotate(360deg);
+    }
+}
+footer{
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    left: 0px;
+    height: 55px;
+    text-align: center;
+    background-color: black;
+    color: white;
+    padding: 0px;
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .profilePhoto{
+            position: absolute;
+            border-radius: 50%;
+            width: 200px;
+            height: 200px;
+            top: 10px;
+            right: 10px;
+            background-size: cover;
+            background-position: center;
+            border: 2px solid black;
+            box-shadow: 0 12px 18px rgba(0.4, 0.4, 0.4, 0.6);
+        }
+        .profilePhoto img{
+            border-radius: 50%;
+            width: 100%;
+            height: 100%;
+        }
+        .info{
+            position: absolute;
+            text-align: center;
+            top: 220px;
+            right: 50px;
+        }
+        .head{
+            text-align: center;
+            color: black;
+            font-size: 30px;
+
+        }
+        .art ul{
+            list-style-position: inside;
+            display: inline-block;
+            text-align: left;
+            font-size: 25px;
+        }
+        
+    </style>
+</head>
+<body style = "background-image: linear-gradient(to right, white, pink);">
+    <div class = "profilePhoto">
+        <img src="myphoto.jpg" usemap="#sign">
+        <map name="sign">
+            <area shape="circle" coords="108,96,97" href="mysign.html" target="_blank"/>
+        </map>
+    </div>
+    <div class = "info">
+        <h4>Nandu Mahesh</h4>
+        <h4>23BCE1133</h4>
+    </div>
+    <center>
+        <div class = "head">
+            <header>
+                <h1><b><u>MY SPACE</u></b></h1>
+            </header>
+        </div>
+    </center>
+    <center>
+        <div class = "art">
+                <article>
+                    <ul>
+                        <li>I am a second year engineering student studying at the Vellore 
+                            Institute of Technology Chennai</li>
+                        <br>
+                        <li>I aspire to be a full - stack developer at the end of the fourth semester.</li>
+                    </ul>
+                </article>
+        </div>
+    </center>
+</body>
+</html>

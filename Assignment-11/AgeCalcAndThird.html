@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator</title>
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .title{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            margin: 0px;
+            height: 60px;
+            font-size: 2em;
+            color: black;
+            background-image: linear-gradient(to right, grey, white, grey);
+            text-align: center;
+            font-weight: 600;
+        }
+        #heading{
+            position: relative;
+            top: 8px;
+        }
+        .ageInput{
+            margin-top: 80px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .ageInput label, input{
+            font-size: 1.4em;
+        }
+        .hoverMe{
+            margin-top: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            justify-self: center;
+            width: 260px;
+            height: 60px;
+            background-color: yellow;
+            border: 2px solid black;
+        }
+        .output{
+            margin-top: 20px;
+            background-color: antiquewhite;
+            width: 300px;
+            height: 100px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+        .textcounter{
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 300px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="title">
+        <span id = 'heading'>Age Calculator</span>
+    </div>
+    <div class="ageInput">
+        <label for="inpDate">Enter your Date of Birth: </label>
+        <input name = "inpDate" id = "inpDate" type="text" placeholder="Format : DD-MM-YYYY">
+    </div>
+    <div class="hoverMe" id = 'calcAge'>
+        <span>Bring Mouse Over me to Find Age!</span>
+    </div>
+    <div class="output">
+        <span id = "outputText"></span>
+    </div>
+    <div class="textcounter">
+        <textarea name="charCount" id="charCount" rows = '5' cols = '25' placeholder="Type text to observe character count"></textarea>
+        <span><b>Char Count : <span  id = 'outputCount'>0</span></b></span>
+    </div>
+</body>
+<script>
+    document.getElementById('calcAge').addEventListener("mouseover", function(){
+        let dob = document.getElementById("inpDate").value;
+        let pattern = /^([0-9]{2})-([0-9]{2})-([0-9]{4})$/
+        if(dob === "" || !dob.match(pattern)){
+            alert("Please Enter a Valid DOB!");
+        }
+        else{
+            let splits = dob.split('-');
+            let day = parseInt(splits[0]);
+            let month = parseInt(splits[1]);
+            let years = parseInt(splits[2]);
+            let currDate = new Date();
+            let yearsOld = currDate.getFullYear() - years;
+            let monthsOld = 0;
+            if(currDate.getMonth() + 1 < month){
+                yearsOld--;
+                monthsOld = 12 - month + currDate.getMonth() + 1;
+            }
+            else{
+                monthsOld = currDate.getMonth() + 1 - month;
+            }
+            document.getElementById("outputText").innerHTML = `
+                You are <br><b>${yearsOld} Years and ${monthsOld} Months Old!<b>
+            `
+            document.getElementsByClassName('output')[0].style.display = 'flex';
+        }
+    });
+    document.getElementById("charCount").addEventListener("keydown", function(){
+        document.getElementById("outputCount").innerHTML = `${document.getElementById("charCount").value.length}`;
+    })
+</script>
+</html>

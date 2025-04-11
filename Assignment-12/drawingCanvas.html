@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Drawing</title>
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            align-items: center;
+        }
+        canvas{
+            width: 700px;
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+    <h1>My Drawing</h1>
+    <canvas id = 'myCanvas' style = 'border: 2px solid black;' width = '700' height = '500'></canvas>
+</body>
+<script>
+    const canvas = document.getElementById('myCanvas');
+    const ctx = canvas.getContext('2d');
+    const cx = canvas.width/2;
+    const cy = canvas.height/2;
+
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.scale(2, 2);
+
+    //pond and boat
+    let x = 10, y = 0;
+    let dx = 2, dy = 0;
+    function moveBoat(){
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.strokeStyle = 'darkblue';
+        ctx.strokeWidth = 3;
+        ctx.fillStyle = 'lightblue';
+        ctx.ellipse(0, 0, 120, 60, 0, 0, Math.PI*2); 
+        ctx.stroke();
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        ctx.strokeStyle = 'darkblue';
+        ctx.fillStyle = 'brown';
+        ctx.lineTo(x-20, y);
+        ctx.lineTo(x-25, y-10);
+        ctx.lineTo((x + 25), y-10);
+        ctx.lineTo(x + 20, y);
+        ctx.closePath()
+        ctx.stroke();
+        ctx.fill();
+        x += dx, y += dy;
+        if(x + 2 >= 60){
+            dx = -dx;
+            dy = -dy;
+        }
+
+        if(x-2 <= -60){
+            dx = -dx;
+            dy = -dy;
+        }
+    }
+    setInterval(moveBoat, 20);
+
+    //house 
+    ctx.beginPath();
+    ctx.moveTo(-140, 0);
+    ctx.strokeStyle = 'brown';
+    ctx.fillStyle = 'rgb(255, 223, 0)';
+    ctx.rect(-140, 0, 50, 40);
+    ctx.stroke();
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.moveTo(-140, -1);
+    ctx.fillStyle = 'red'
+    ctx.strokeStyle = 'brown';
+    ctx.lineTo(-115, -30);
+    ctx.lineTo(-90, -1);
+    ctx.lineTo(-140, -1);
+    ctx.stroke();
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.moveTo(-135, 5);
+    ctx.fillStyle = 'darkblue';
+    ctx.strokeStyle = 'brown';
+    ctx.rect(-135, 5, 15, 10);
+    ctx.stroke();
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.fillStyle = 'brown';
+    ctx.strokeStyle = 'blue';
+    ctx.moveTo(-117, 17);
+    ctx.rect(-117, 17, 10, 23)
+    ctx.stroke();
+    ctx.fill();
+
+    //sun
+    ctx.beginPath();
+    ctx.fillStyle = 'yellow';
+    ctx.arc(120, -60, 30, 0, Math.PI*2);
+    ctx.fill();
+
+    ctx.translate(120, -60);
+    ctx.beginPath();
+    for(let i = 1; i <= 10; i++){
+        ctx.moveTo(0, 0);
+        ctx.strokeStyle = 'yellow';
+        ctx.lineTo(40*Math.cos(i*Math.PI/5), 40*Math.sin(i*Math.PI/5));
+        ctx.stroke();
+    }
+    ctx.restore();
+    ctx.translate(cx, cy);
+
+    //flower
+    ctx.beginPath(); 
+    ctx.moveTo(240, 150);
+    ctx.strokeStyle = 'green'; 
+    ctx.lineWidth = 6;
+    ctx.lineTo(240, 100);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.fillStyle = 'green';
+    ctx.strokeStyle = 'green';
+    ctx.ellipse(250, 110, 10, 5, Math.PI/3, 0, Math.PI*2);
+    ctx.fill();
+    ctx.stroke();
+    
+    ctx.beginPath();
+    ctx.fillStyle = 'green';
+    ctx.strokeStyle = 'green';
+    ctx.ellipse(230, 110, 10, 5, 2*Math.PI/3, 0, Math.PI*2);
+    ctx.fill();
+    ctx.stroke();
+    
+    ctx.fillStyle = 'pink';
+    ctx.strokeStyle = 'pink';
+    for(let i = 0; i < 6; i++){
+        ctx.beginPath();
+        ctx.ellipse(240, 76, 30, 10, i*Math.PI/3, 0, Math.PI);
+        ctx.fill();
+        ctx.stroke();
+    }
+
+    
+    ctx.beginPath();
+    ctx.moveTo(240, 76);
+    ctx.fillStyle = 'yellow';
+    ctx.arc(240, 76, 10, 0, Math.PI*2); 
+    ctx.fill();
+    
+    //duck
+    ctx.beginPath();
+    ctx.moveTo(120, 150);
+    ctx.fillStyle = 'yellow';
+    ctx.strokeStyle = 'blue';
+    ctx.lineWidth = 1;
+    ctx.arc(120, 150, 30, 0, Math.PI*2);
+    ctx.stroke();
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.moveTo(140, 120);
+    ctx.fillStyle = 'yellow';
+    ctx.strokeStyle = 'blue';
+    ctx.lineWidth = 1;
+    ctx.arc(140, 120, 20, 0, Math.PI*2);
+    ctx.stroke();
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.moveTo(152, 115);
+    ctx.fillStyle = 'black';
+    ctx.strokeStyle = 'black';
+    ctx.lineWidth = 1;
+    ctx.arc(152, 115, 5, 0, Math.PI*2);
+    ctx.stroke();
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.moveTo(154, 124);
+    ctx.fillStyle = 'orange';
+    ctx.strokeStyle = 'orange';
+    ctx.lineTo(174, 134);
+    ctx.lineTo(154, 144);
+    ctx.lineTo(154, 124);
+    ctx.fill();
+    ctx.stroke();
+
+    //rocks
+    ctx.beginPath();
+    ctx.moveTo(-250, 160);
+    ctx.fillStyle = 'grey';
+    ctx.strokeStyle = 'blue';
+    ctx.arc(-250, 160, 20, 0, Math.PI*2);
+    ctx.stroke();
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.moveTo(-230, 170);
+    ctx.fillStyle = 'grey';
+    ctx.strokeStyle = 'blue';
+    ctx.arc(-230, 170, 13, 0, Math.PI*2);
+    ctx.stroke();
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.moveTo(-210, 160);
+    ctx.fillStyle = 'grey';
+    ctx.strokeStyle = 'blue';
+    ctx.arc(-210, 160, 17, 0, Math.PI*2);
+    ctx.stroke();
+    ctx.fill();
+    
+    ctx.beginPath();
+    ctx.moveTo(160, 190);
+    ctx.fillStyle = 'grey';
+    ctx.strokeStyle = 'blue';
+    ctx.arc(160, 190, 17, 0, Math.PI*2);
+    ctx.stroke();
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.moveTo(180, 200);
+    ctx.fillStyle = 'grey';
+    ctx.strokeStyle = 'blue';
+    ctx.arc(180, 200, 14, 0, Math.PI*2);
+    ctx.stroke();
+    ctx.fill();
+    
+</script>
+</html>

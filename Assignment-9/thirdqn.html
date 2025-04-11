@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <style>
+        #subBtn{
+            text-align: center;
+        }
+        body{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+        #BMICalculator{
+            height: 200px;
+            width: 250px;
+            margin: 10px;
+        }
+        #BMIRanges{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <table border = '3' cellpadding = '3' id = 'BMICalculator'>
+        <tr>
+            <th colspan="2">
+                <label for="gender">BMI Calculator</label>
+                <select name="gender" id="gender">
+                    <option selected = "true">Male</option>
+                    <option>Female</option>
+                </select>
+            </th>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <label for="weight"><b>Enter your weight:</b></label>
+                <br>
+                <span>(in pounds)</span>
+                <input type="text" placeholder="Enter weight" name = 'weight' id = 'weight'>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <label for="height"><b>Enter your height: </b></label>
+                <br>
+                <span>(in feet)</span>
+                <input type="text" placeholder="Enter height(feet)"  name = 'height' id = 'height'>
+                <br>
+                <br>    
+                <span>(inches)</span>
+                <input type="text" placeholder="Enter inches" name = 'inches' id = 'inches'>
+            </td>
+        </tr>
+        <tr>
+            <td id = 'subBtn' colspan="2">
+                <button type = 'button' onclick = 'calcBMI()'>Calculate</button>
+            </td>
+        </tr>
+        <tr>
+            <th>YOUR<br>BMI</th>
+            <td><input type="text" id = 'output' name = 'output'></td>
+        </tr>
+    </table>
+    <table border = '3' cellpadding = '3' id = 'BMIRanges'>
+        <tr>
+            <th>Adults</th>
+            <th>Women</th>
+            <th>Men</th>
+        </tr>
+        <tr>
+            <td>Anorexia</td>
+            <td colspan="2">Less than 17.50</td>
+        </tr>
+        <tr>
+            <td>Underweight</td>
+            <td>17.51-19.10</td>
+            <td>17.501-20.70</td>
+        </tr>
+        <tr>
+            <td><b>Ideal Range</b></td>
+            <td><b>19.11-25.80</b></td>
+            <td><b>20.71-26.40</b></td>
+        </tr>
+        <tr>
+            <td>Marginally overweight range</td>
+            <td>25.81-27.30</td>
+            <td>26.41-27.80</td>
+        </tr>
+        <tr>
+            <td>Overweight range</td>
+            <td>27.31-32.30</td>
+            <td>27.81-31.10</td>
+        </tr>
+        <tr>
+            <td>Very overweight or <br> Obese range</td>
+            <td>More than <br> 32.30</td>
+            <td>More than <br> 31.10</td>
+        </tr>
+    </table>
+</body>
+<script>
+    function calcBMI(){
+        let weight = parseFloat(document.getElementById('weight').value);
+        let height = parseInt(document.getElementById('height').value)*12 + parseFloat(document.getElementById('inches').value);
+
+        let BMI = (703*weight)/(height*height);
+        document.getElementById("output").value = (Math.round(BMI*100))/100;
+        document.getElementById("BMIRanges").style.display = "block";
+    }
+</script>
+</html>

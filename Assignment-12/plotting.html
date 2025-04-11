@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plotting</title>
+    <style>
+        body{
+            display: block;
+        }
+        .firstTwo{
+            display: flex;
+        }
+        .secondTwo{
+            display: flex;
+        }
+        *[id$="Chart"]{
+            width : 500px;
+            height : 500px;
+            border : 1px solid black;
+        }
+        
+    </style>
+    <script src="https://cdn.plot.ly/plotly-3.0.0.min.js" charset="utf-8"></script>
+</head>
+<body>
+    <div class="firstTwo">
+        <div id = "barChart"></div>
+        <div id = "lineChart"></div>
+    </div>
+    <div class="secondTwo">
+        <div id = "pieChart"></div>
+        <div id = "donutChart"></div>
+    </div>
+</body>
+<script>
+    // data for bar plot 
+    let xarr = ["Argentina", "Brazil", "Germany", "Italy", "Uruguay", "France", "England", "Spain"];
+    let yarr = [3, 5, 4, 4, 2, 2, 1, 1];
+    let cols = ["lightblue", "yellow", "black", "purple", "green", "darkblue", "orange", "red"]
+    const barData = [{
+        x : xarr,
+        y : yarr,
+        type : "bar",
+        orientation : "v",
+        marker : {color : cols}
+    }]
+
+    const barlayout = {
+        xaxis : {title : "Countries", automargin : true},
+        yaxis : {title : "FIFA World Cups", automargin : true},
+        title : "World wide FIFA Cup Winners"
+    }
+    Plotly.newPlot("barChart", barData, barlayout);
+
+
+    // line chart
+    const lineData = [{
+        x : xarr,
+        y : yarr,
+        mode : "lines",
+        type : "scatter",
+        marker : {color : cols}
+    }]
+
+    const linelayout = {
+        xaxis : {title : "Countries", automargin : true},
+        yaxis : {title : "FIFA World Cups", automargin : true},
+        title : "FIFA World Cup Winners"
+    }
+
+    Plotly.newPlot("lineChart", lineData, linelayout);
+
+    // pie chart
+
+    const pieData = [{
+        labels : xarr,
+        values : yarr,
+        type : "pie",
+        marker : {color : cols}
+    }]
+
+    const pielayout = {title : "FIFA World Cup Winners"};
+
+    Plotly.newPlot("pieChart", pieData, pielayout);
+
+    const donutData = [{
+        labels : xarr,
+        values : yarr,
+        type : "pie",
+        hole : 0.4,
+        marker : {color : cols}
+    }]
+
+    const donutlayout = {title : "FIFA World Cup Winners"};
+
+    Plotly.newPlot("donutChart", donutData, donutlayout);
+
+</script>
+</html>

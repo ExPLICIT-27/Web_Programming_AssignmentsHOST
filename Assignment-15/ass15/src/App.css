@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+*{
+  margin: 0;
+  padding: 0;
+}
+.Mainsection{
+  width: 100%;
+  height: 100vh;
+  /* background: linear-gradient(to right, rgb(29, 9, 23) 0%, rgb(45, 14, 39) 11%, rgb(65, 20, 60) 22%, rgb(77, 25, 76) 33%, rgb(76, 25, 81) 44%, rgb(64, 22, 75) 55%, rgb(43, 16, 58) 66%, rgb(24, 10, 39) 77%, rgb(12, 6, 24) 88%, rgb(6, 3, 14) 100%); */
+  background: linear-gradient(to right, white, skyblue);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.header{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+.header h1{
+  color: white;
+  font-size: 2.4em;
+  font-weight: 600;
+  z-index: 1;
+  padding: 10px;
+  text-transform: capitalize;
+  text-shadow:
+  1px 1px 2px rgba(255, 255, 255, 0.2),
+  2px 2px 5px rgba(255, 255, 255, 0.3),
+  3px 3px 10px rgba(255, 255, 255, 0.4),
+  4px 4px 15px rgba(255, 255, 255, 0.5);
+}
+.content{
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+.content .joke{
+  font-size: 1.8em;
+  font-style: italic;
+  color: white;
+  z-index: 1;
+  text-shadow:
+  1px 1px 2px rgba(255, 255, 255, 0.2),
+  2px 2px 5px rgba(255, 255, 255, 0.3),
+  3px 3px 10px rgba(255, 255, 255, 0.4),
+  4px 4px 15px rgba(255, 255, 255, 0.5);
+}
+.content button{
+  width: 300px;
+  font-size: 1.2em;
+  height: 40px;
+  border: 2px solid yellow;
+  margin-bottom: 15px;
+  border-radius: 10px;
+}
+.content button:hover{
+  color: white;
+  background-color: black;
+}
+.content .jokeBox{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 5px;
+  width: 1000px;
+  height: 70px;
+  border-radius: 14px;
+  
+}
+.footer{
+  position: absolute;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70px;
+  background-color: black;
+  bottom: 0px;
+  margin-bottom: 0px;
+}
+.footer span{
+  color: white;
+}
+.styledButton{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 200px;
+  background: black;
+  color: white;
+  border: 2px solid white;
+  margin: 15px;
+}
+.styledButton button{
+  border: 2px solid red;
+  font-size: 1.4em;
+  padding: 5px;
+}
+.counter{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.counter .inc-dec-btns{
+  display: flex;
+  gap: 10px;
+}
+.counter .inc-dec-btns button{
+  font-size: 1em;
+}
+.counter .inc-dec-btns button:hover{
+  background-color: black;
+  color: white;
+}
+.counter-reducer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.counter-reducer .inc-dec-btns{
+  display: flex;
+  gap: 10px;
+}
+.counter-reducer .inc-dec-btns button:hover{
+  background-color: black;
+  color:#fff;
+}
+.jokeFetcher{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.q8useref{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.form-validation table{
+  padding: 10px;
+  margin: 20px;
+}
+.form-validation{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+}
+.form-validation .buttons{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
