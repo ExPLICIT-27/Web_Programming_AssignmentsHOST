@@ -1,0 +1,50 @@
+.mainSection{
+  width: 100wh;
+  height: 100vh;
+  background-image: linear-gradient(to right, white, skyblue);
+  margin: 0px;
+  overflow: hidden;
+}
+.fruits{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.sqrNums{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.sqrNums input{
+  margin: 10px;
+}
+.sqrNums h1{
+  color: rebeccapurple;
+  text-decoration: underline;
+  font-style: italic;
+}
+.GreetingMessage{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.GreetingMessage span{
+  color: red;
+  font-size: 1.2em;
+  font-weight: 400;
+}
+.GreetingMessage h2{
+  font-style: italic;
+}
+.q6currTime, .q7Prime, .q8TempConverter, .q9RevStr, .q10RandomNum, .q10CheckLeap, .q12Props{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+  gap: 10px;
+}
+.q8TempConverter input, .q10CheckLeap input{
+  text-align: center;
+}
